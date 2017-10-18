@@ -67,6 +67,7 @@ shootLeft = keyboard_check(vk_left);
 
 move = -keyLeft + keyRight;
 hSpeed = move * moveVelocity;
+shoot = 1;
 
 if(stepCounter &gt; 0)
 {
@@ -113,11 +114,20 @@ y += vSpeed;
 if((shootRight || shootLeft) &amp;&amp; canFire)
 {
     canFire = false;
+    if(shootRight)
+    {
+        shotDirection = -1;
+    }
+    if(shootLeft)
+    {
+        shotDirection = 1;
+    }
+    
     var proj;
     proj = instance_create(x, y, obj_Bullet);
     with(proj)
     {
-        other.dir = 1;
+        other.dir = image_angle;
     }
 }
 
