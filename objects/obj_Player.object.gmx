@@ -29,13 +29,14 @@
 hp = 3;
 vSpeed = 0;
 hSpeed = 0;
-jVelocity = 25;
-moveVelocity = 10;
-grav = 1.5;
+jVelocity = 30;
+moveVelocity = 15;
+grav = 1.8;
 canFire = true;
 stepCounter = 20;
 isCharging = false;
 charge = 0;
+jumpNumber = 0;
 </string>
           </argument>
         </arguments>
@@ -74,6 +75,7 @@ if (vSpeed &lt; 10)
 }
 if (place_meeting(x, y+1, obj_Platform))
 {
+    jumpNumber = 0;
     vSpeed = keyUp * -jVelocity;
 }
 
@@ -100,7 +102,14 @@ if (place_meeting(x, y + vSpeed, obj_Platform))
 
 y += vSpeed;
 
-
+//Jump Dash
+if((keyboard_check_pressed(vk_space)) 
+    &amp;&amp; jumpNumber &lt;= 1 
+    &amp;&amp; !place_meeting(x, y, obj_Platform))
+{
+    jumpNumber = 2;
+    x += (move * 3 * jVelocity)       
+}
 
 </string>
           </argument>
@@ -208,6 +217,41 @@ else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire)
     if(sign(image_xscale == 1)) bullet.direction = 0;
     if(sign(image_xscale == -1)) bullet.direction = 180;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Enemy Collision
+if(hp &lt;= 0)
+{
+    var inst = instance_position(x, y, obj_Player);
+    with(inst)
+    {
+    }
+}
+
+if(place_meeting(x, y, obj_Enemy))
+{
+    hp--;
+    x -= 10;
+}
+
 </string>
           </argument>
         </arguments>
