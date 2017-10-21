@@ -32,7 +32,7 @@ xSpeed = 0;
 ySpeed = 0;
 moveSpeed = 8;
 grav = 0.5;
-health = 3;
+hp = 3;
 
 
 </string>
@@ -107,22 +107,28 @@ y += ySpeed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///AI Behaviour and Bullet Collision
+            <string>///Bullet Collision
 
-if(place_meeting(x + sprite_width/2, y + sprite_width/2, obj_Bullet))
+if(place_meeting(x, y, obj_Bullet))
 {
-    health -= 1;
+    var inst = instance_place(x, y, obj_Bullet);
+    if(instance_exists(inst))
+    {
+        hp -= inst.damage;
+        with(inst)
+        {
+              instance_destroy();
+        }
+    }
 }
-
-if(health &lt;= 0)
+if(hp &lt;= 0)
 {
-    with(obj_Enemy)
+    var inst = instance_position(x, y, obj_Enemy);  
+    with(inst)
     {
         instance_destroy();
     }
 }
-
-
 </string>
           </argument>
         </arguments>
