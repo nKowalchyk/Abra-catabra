@@ -134,7 +134,7 @@ if((keyboard_check_pressed(vk_space))
             <string>///Animation
 if(move != 0)
 {
-    image_xscale = move;
+    image_xscale = sign(move);
 }
 if(hSpeed != 0)
 {
