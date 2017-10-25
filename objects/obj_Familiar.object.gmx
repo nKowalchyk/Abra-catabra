@@ -27,10 +27,10 @@
             <kind>1</kind>
             <string>///Init Familiar Values
 
-moveSpeed = 8;
+moveSpeed = 12;
 xSpeed = 0;
 ySpeed = 0;
-rangeTolerance = 12;
+rangeTolerance = 75;
 </string>
           </argument>
         </arguments>
