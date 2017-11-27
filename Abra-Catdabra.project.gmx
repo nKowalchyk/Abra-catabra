@@ -12,6 +12,8 @@
     <sprite>sprites\spr_Enemy</sprite>
     <sprite>sprites\spr_WalkCycle</sprite>
     <sprite>sprites\spr_Bullet</sprite>
+    <sprite>sprites\spr_largeBullet</sprite>
+    <sprite>sprites\spr_BasicPigWalk</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -19,8 +21,9 @@
     <object>objects\obj_Player</object>
     <object>objects\obj_Platform</object>
     <object>objects\obj_Enemy</object>
-    <object>objects\obj_Bullet</object>
     <object>objects\obj_Familiar</object>
+    <object>objects\obj_Bullet</object>
+    <object>objects\obj_LargeBullet</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\testRoom</room>

@@ -1,0 +1,26 @@
+/*Design Document for Abra-Catdabra
+*By Nick Kowalchyk and Nancy Wang
+*Made in GameMaker 1.4
+*/
+
+Planned Features:
+  - Basic Platforming
+  - Weak Attack
+  - Strong/Charged Attack
+  - Different Enemies
+  - Animations/Assets
+  - Music/Sound
+  - Different Environments
+
+DONE:
+  - Basic Platforming
+  - Weak Attack
+
+NEEDS TESTING:
+  - Strong/Charged Attack
+
+TODO:
+  - Different Enemies
+  - Animations/Assets
+  - Music/Sound
+  - Different Environments

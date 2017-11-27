@@ -29,9 +29,9 @@
 hp = 3;
 vSpeed = 0;
 hSpeed = 0;
-jVelocity = 30;
+jVelocity = 35;
 moveVelocity = 15;
-grav = 1.8;
+grav = 2.8;
 canFire = true;
 stepCounter = 20;
 isCharging = false;
@@ -183,6 +183,7 @@ else
 if(shootLeft &amp;&amp; canFire)
 {
     canFire = false;
+    draw_text(x, y - 100, "Charging!");
     
     if(charge == 0)
     {
@@ -193,13 +194,14 @@ if(shootLeft &amp;&amp; canFire)
         charge++;
         if(charge &gt; 3)
         {
+            draw_text(x, y - 100, "Charged!!");
             charge = 3;
         }
     }
 }
 else if(keyboard_check_released(vk_left) &amp;&amp; charge == 3)
 {
-    bullet = instance_create(x, y, obj_Bullet)
+    bullet = instance_create(x, y - 30, obj_LargeBullet)
     bullet.damage = charge;
     bullet.speed = 15;
     bullet.image_xscale *= 1.5;
@@ -212,7 +214,7 @@ else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire)
 {
     canFire = false;
     
-    bullet = instance_create(x, y, obj_Bullet);
+    bullet = instance_create(x, y - 30, obj_Bullet);
     bullet.speed = 15;
     if(sign(image_xscale == 1)) bullet.direction = 0;
     if(sign(image_xscale == -1)) bullet.direction = 180;
