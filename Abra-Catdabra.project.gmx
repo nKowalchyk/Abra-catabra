@@ -9,21 +9,26 @@
     <sprite>sprites\spr_Wall</sprite>
     <sprite>sprites\spr_Familiar</sprite>
     <sprite>sprites\spr_PlayerOne</sprite>
-    <sprite>sprites\spr_Enemy</sprite>
     <sprite>sprites\spr_WalkCycle</sprite>
+    <sprite>sprites\spr_BasicPig</sprite>
+    <sprite>sprites\spr_BasicPigWalk</sprite>
+    <sprite>sprites\spr_FirePig</sprite>
+    <sprite>sprites\spr_FirePigWalk</sprite>
     <sprite>sprites\spr_Bullet</sprite>
     <sprite>sprites\spr_largeBullet</sprite>
-    <sprite>sprites\spr_BasicPigWalk</sprite>
+    <sprite>sprites\spr_FlameProjectile</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
-    <object>objects\obj_Player</object>
     <object>objects\obj_Platform</object>
-    <object>objects\obj_Enemy</object>
+    <object>objects\obj_Player</object>
     <object>objects\obj_Familiar</object>
+    <object>objects\obj_BasicPig</object>
+    <object>objects\obj_FirePig</object>
     <object>objects\obj_Bullet</object>
     <object>objects\obj_LargeBullet</object>
+    <object>objects\obj_FlameProjectile</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\testRoom</room>
