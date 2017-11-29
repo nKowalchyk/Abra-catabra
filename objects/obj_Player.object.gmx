@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>///Init Player Vars
 hp = 3;
+maxHp = 3;
 vSpeed = 0;
 hSpeed = 0;
 jVelocity = 25;
@@ -71,10 +72,19 @@ if(hSpeed != 0)
     sprite_index = spr_WalkCycle;
     image_speed = 1/4;
 }
+if(vSpeed != 0)
+{
+    sprite_index = spr_PlayerJump;
+}
 else if(hSpeed == 0)
 {
     sprite_index = spr_PlayerOne;
 }
+
+//healthbar
+pc = (hp/maxHp) * 100;
+draw_healthbar(0, 0, 500, 200, pc, c_black, c_red, c_lime, 0, true, true);
+
 </string>
           </argument>
         </arguments>
@@ -239,6 +249,9 @@ if(place_meeting(x, y, obj_BasicPig) || place_meeting(x, y, obj_FirePig))
     x += sign(image_xscale) * moveVelocity * 2;
 }
 
+if(place_meeting(x, y, obj_FlameProjectile)){
+    hp--;
+}
 </string>
           </argument>
         </arguments>

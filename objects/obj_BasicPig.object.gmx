@@ -38,8 +38,9 @@ fearOfHeights = true;
 tolerance = 5;
 timeToCharge = 20;
 chargeRange = 100;
-chargeTime = 25;
+chargeTime = 20;
 rechargeTime = 0;
+charging = false;
 </string>
           </argument>
         </arguments>
@@ -68,27 +69,29 @@ xSpeed = dir * moveSpeed;
 ySpeed += grav;
 
 //charge behavior
-
-if(distance_to_object(obj_Player) &lt; chargeRange &amp;&amp; timeToCharge &gt;= 0 &amp;&amp; rechargeTime &lt;= 0){
-    if(timeToCharge== 20){ 
+if(timeToCharge &lt;= 0){
+    charging = true;
+}
+if(distance_to_object(obj_Player) &lt; chargeRange &amp;&amp; rechargeTime &lt;= 0 &amp;&amp; !charging){
+    if(timeToCharge == 20){ 
         ySpeed += -2.5;
+        dir = sign(obj_Player.x - x);
     }
     xSpeed = 0;
-    timeToCharge -= 1;    
+    timeToCharge -= 1;       
 }
 
-if(distance_to_object(obj_Player) &lt; chargeRange &amp;&amp; timeToCharge &lt;= 0 &amp;&amp; rechargeTime &lt;= 0){
-    if(chargeTime == 10){dir = sign(obj_Player.x - x)}
-    
-    xSpeed = moveSpeed * 2 * dir;
-    chargeTime -= 1;
+else if(charging){
+    fearOfHeights = false;
+    xSpeed += moveSpeed * 2 * dir;    
+    chargeTime--;
     if(chargeTime &lt;= 0 || place_meeting(x, y, obj_Player)){
         timeToCharge = 20;
-        chargeTime = 10;
+        chargeTime = 20;
         rechargeTime = 150;
+        charging = false;
     }
 }
-
 
 //collision code
 
@@ -103,6 +106,20 @@ if(place_meeting(x+xSpeed,y - pixelTolerance, obj_Platform))
     dir *= -1;
 }
 
+if(fearOfHeights)
+{
+    if(place_meeting(x+xSpeed,y - pixelTolerance, obj_invisPlatform))
+    {
+        while(!place_meeting(x + sign(xSpeed), y, obj_invisPlatform))
+        {
+            x += sign(xSpeed);
+        }
+    xSpeed = 0;
+    
+    dir *= -1;
+    }
+}
+
 x += xSpeed;
 
 if(place_meeting(x, y + ySpeed, obj_Platform))
@@ -112,10 +129,10 @@ if(place_meeting(x, y + ySpeed, obj_Platform))
         y += sign(ySpeed);
     }
     ySpeed = 0;
-    if((fearOfHeights) &amp;&amp; !position_meeting(((x + x/2)), (y + y/2 + tolerance), obj_Platform)){
+    /*if((fearOfHeights) &amp;&amp; !position_meeting(((x + x/2) * dir), (y + y/2 + 18), obj_Platform)){
         show_debug_message("fearOfHeights called");
         dir *= -1;
-    }
+    }*/
 }
 
 y += ySpeed;

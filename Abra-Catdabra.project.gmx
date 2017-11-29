@@ -17,6 +17,8 @@
     <sprite>sprites\spr_Bullet</sprite>
     <sprite>sprites\spr_largeBullet</sprite>
     <sprite>sprites\spr_FlameProjectile</sprite>
+    <sprite>sprites\spr_invisPlatform</sprite>
+    <sprite>sprites\spr_PlayerJump</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -29,6 +31,7 @@
     <object>objects\obj_Bullet</object>
     <object>objects\obj_LargeBullet</object>
     <object>objects\obj_FlameProjectile</object>
+    <object>objects\obj_invisPlatform</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\testRoom</room>

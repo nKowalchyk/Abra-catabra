@@ -38,6 +38,7 @@ range = 250;
 playerInRange = false;
 stepCounter = 60;
 canFire = true;
+fearOfHeights = true;
 </string>
           </argument>
         </arguments>
@@ -67,7 +68,7 @@ xSpeed = dir * moveSpeed;
 ySpeed += grav;
 
 if(stepCounter == 0){
-    stepCounter = 25;
+    stepCounter = 60;
     canFire = true;
 }
 else{
@@ -80,6 +81,20 @@ if(place_meeting(x + xSpeed, y - pixelTolerance, obj_Platform)){
     }
     xSpeed = 0;
     dir *= -1;
+}
+
+if(fearOfHeights)
+{
+    if(place_meeting(x+xSpeed,y - pixelTolerance - 8, obj_invisPlatform))
+    {
+        while(!place_meeting(x + sign(xSpeed), y, obj_invisPlatform))
+        {
+            x += sign(xSpeed);
+        }
+    xSpeed = 0;
+    
+    dir *= -1;
+    }
 }
 
 x += xSpeed;
@@ -201,7 +216,7 @@ image_xscale = -dir;
           <argument>
             <kind>1</kind>
             <string>///Projectile Code
-if(distance_to_object(obj_Player) &lt; range &amp;&amp; canFire = true){
+if(distance_to_object(obj_Player) &lt; range &amp;&amp; canFire){
     xSpeed = 0;
     dir = sign(obj_Player.x - x);
     
@@ -212,6 +227,14 @@ if(distance_to_object(obj_Player) &lt; range &amp;&amp; canFire = true){
     
     canFire = false;
 }
+if(stepCounter % 25 == 0){
+    var inst = instance_create(x, y, obj_FlameProjectile);
+    with(inst){
+        dir = other.dir * - 1;
+    }
+}
+
+
 </string>
           </argument>
         </arguments>
