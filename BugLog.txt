@@ -1,0 +1,23 @@
+/*Bugs and Fixes For Abra-Catdabra
+By: Nancy Wang and Nick Kowalchyk
+Fall 2017
+*/
+
+Bugs:
+    Player Sprite gets caught in walls when jumping towards them:
+      - Fixed: Changed different player animations to more consistent collision masks
+    Pigs get stuck on ledges when checking for falling
+      - Fixed: Used invisible walls for pigs to detect if they're going to go over
+        a ledge
+    Regular Pig Charges, and then keeps following the player during the charge
+      - Fixed: Changed pigs to only get charge direction only when player is detected
+    Flame Projectiles from fire pigs float instead of travelling in parabola
+      - Fixed: Only set ySpeed value in Create Event of obj_FlameProjectile
+        instead of Step Event
+    Pigs sometimes get caught on flat platform
+      - Fixed: Adjusted Collision check to check several pixels above y-collision
+        mask to accommodate sprites
+    Regular Pig Charges occur randomly, without visual jump notification
+      - Fixed: Added and extra boolean check to determine if pigs have done
+        visual jump and chargeTimer has been reset
+    

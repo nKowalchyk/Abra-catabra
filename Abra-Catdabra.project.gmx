@@ -10,7 +10,9 @@
     <sprite>sprites\spr_Familiar</sprite>
     <sprite>sprites\spr_PlayerOne</sprite>
     <sprite>sprites\spr_WalkCycle</sprite>
+    <sprite>sprites\spr_PlayerJump</sprite>
     <sprite>sprites\spr_BasicPig</sprite>
+    <sprite>sprites\spr_PlayerAttack</sprite>
     <sprite>sprites\spr_BasicPigWalk</sprite>
     <sprite>sprites\spr_FirePig</sprite>
     <sprite>sprites\spr_FirePigWalk</sprite>
@@ -18,7 +20,7 @@
     <sprite>sprites\spr_largeBullet</sprite>
     <sprite>sprites\spr_FlameProjectile</sprite>
     <sprite>sprites\spr_invisPlatform</sprite>
-    <sprite>sprites\spr_PlayerJump</sprite>
+    <sprite>sprites\spr_BigPig</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -26,12 +28,13 @@
     <object>objects\obj_Platform</object>
     <object>objects\obj_Player</object>
     <object>objects\obj_Familiar</object>
-    <object>objects\obj_BasicPig</object>
     <object>objects\obj_FirePig</object>
     <object>objects\obj_Bullet</object>
     <object>objects\obj_LargeBullet</object>
     <object>objects\obj_FlameProjectile</object>
     <object>objects\obj_invisPlatform</object>
+    <object>objects\obj_BigPig</object>
+    <object>objects\obj_BasicPig</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\testRoom</room>

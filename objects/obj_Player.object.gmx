@@ -40,6 +40,7 @@ isCharging = false;
 charge = 0;
 jumpNumber = 0;
 move = 0;
+isFiring = false;
 </string>
           </argument>
         </arguments>
@@ -63,23 +64,24 @@ move = 0;
           <argument>
             <kind>1</kind>
             <string>///Animation
-if(move != 0)
-{
+image_speed = 1/4;
+
+if(move != 0){
     image_xscale = sign(move);
 }
-if(hSpeed != 0)
-{
-    sprite_index = spr_WalkCycle;
-    image_speed = 1/4;
+if(isFiring){
+    sprite_index = spr_PlayerAttack;
 }
-if(vSpeed != 0)
-{
+else if(vSpeed != 0 &amp;&amp; !place_meeting(x, y + vSpeed, obj_Platform)){
     sprite_index = spr_PlayerJump;
 }
-else if(hSpeed == 0)
-{
+else if(hSpeed != 0){
+    sprite_index = spr_WalkCycle;
+}
+else if(hSpeed == 0 &amp;&amp; vSpeed == 0 &amp;&amp; !place_meeting(x+hSpeed, y, obj_Platform)){
     sprite_index = spr_PlayerOne;
 }
+
 
 //healthbar
 pc = (hp/maxHp) * 100;
@@ -165,6 +167,10 @@ y += vSpeed;
 shootRight = keyboard_check(vk_right);
 shootLeft = keyboard_check(vk_left);
 
+if(canFire){
+    isFiring = false;
+}
+
 if(stepCounter &gt; 0)
 {
     stepCounter--;
@@ -180,11 +186,7 @@ if(shootLeft &amp;&amp; canFire)
     canFire = false;
     draw_text(x, y - 100, "Charging!");
     
-    if(charge == 0)
-    {
-        charge = 1;
-    }
-    else if(charge &gt; 0)
+    if(charge &gt;= 0)
     {
         charge++;
         if(charge &gt; 3)
@@ -195,21 +197,21 @@ if(shootLeft &amp;&amp; canFire)
     }
 }
 else if(keyboard_check_released(vk_left) &amp;&amp; charge == 3)
-{
-    bullet = instance_create(x, y - 30, obj_LargeBullet)
+{   
+    bullet = instance_create(x, y - 25, obj_LargeBullet)
     bullet.damage = charge;
-    bullet.speed = 15;
+    bullet.speed = 10;
     if(sign(image_xscale == 1)) bullet.direction = 0;
     if(sign(image_xscale == -1)) bullet.direction = 180;
     bullet.image_xscale *= sign(image_xscale);
     charge = 0;
 }
 else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire)
-{
+{   
     canFire = false;
-    
-    bullet = instance_create(x, y - 30, obj_Bullet);
-    bullet.speed = 15;
+    isFiring = true;
+    bullet = instance_create(x, y - 25, obj_Bullet);
+    bullet.speed = 25;
     if(sign(image_xscale == 1)) bullet.direction = 0;
     if(sign(image_xscale == -1)) bullet.direction = 180;
 }
