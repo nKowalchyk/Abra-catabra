@@ -365,7 +365,10 @@
     <instance objName="obj_invisPlatform" x="1248" y="736" name="inst_8DDFB5AF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_FirePig" x="192" y="672" name="inst_A6498856" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_invisPlatform" x="448" y="704" name="inst_25BF6BF9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_BasicPig" x="640" y="832" name="inst_B451845C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_BasicPig" x="2656" y="608" name="inst_B451845C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_invisPlatform" x="2464" y="640" name="inst_401F8A4E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_invisPlatform" x="2816" y="640" name="inst_132C7C1A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_BigPig" x="1056" y="832" name="inst_77BEE57E" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
