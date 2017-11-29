@@ -29,9 +29,9 @@
 hp = 3;
 vSpeed = 0;
 hSpeed = 0;
-jVelocity = 35;
+jVelocity = 25;
 moveVelocity = 15;
-grav = 2.4;
+grav = 1.7;
 yAcc = 1;
 canFire = true;
 stepCounter = 20;
@@ -105,24 +105,15 @@ keyUp = keyboard_check(ord('W'));
 move = -keyLeft + keyRight;
 hSpeed = move * moveVelocity;
 
-if (vSpeed &lt; 10)
-{   
-    vSpeed += grav;
-    if(yAcc &lt; 100){
-        yAcc++;
-    }
-}
-if (place_meeting(x, y+1, obj_Platform))
-{
-    jumpNumber = 0;
+vSpeed += grav;
+
+if (place_meeting(x, y+1, obj_Platform)){
     vSpeed = keyUp * -jVelocity;
 }
 
 //Horizontal Collision
-if (place_meeting(x+hSpeed, y, obj_Platform))
-{
-    while(!place_meeting(x+sign(hSpeed), y, obj_Platform))
-    {
+if (place_meeting(x+hSpeed, y, obj_Platform)){
+    while(!place_meeting(x+sign(hSpeed), y, obj_Platform)){
         x += sign(hSpeed);
     }
     hSpeed = 0;
@@ -130,26 +121,14 @@ if (place_meeting(x+hSpeed, y, obj_Platform))
 
 x += hSpeed;
 //Vertical Collision
-if (place_meeting(x, y + vSpeed, obj_Platform))
-{
-    while(!place_meeting(x, y + sign(vSpeed), obj_Platform))
-    {
+if (place_meeting(x, y + vSpeed, obj_Platform)){
+    while(!place_meeting(x, y + sign(vSpeed), obj_Platform)){
         y += sign(vSpeed);
     }
     vSpeed = 0;
-    yAcc = 1;
 }
 
 y += vSpeed;
-
-//Jump Dash
-if((keyboard_check_pressed(vk_space)) 
-    &amp;&amp; jumpNumber &lt;= 1 
-    &amp;&amp; !place_meeting(x, y, obj_Platform))
-{
-    jumpNumber = 2;
-    x += (move * 3 * jVelocity)       
-}
 
 </string>
           </argument>
@@ -210,10 +189,9 @@ else if(keyboard_check_released(vk_left) &amp;&amp; charge == 3)
     bullet = instance_create(x, y - 30, obj_LargeBullet)
     bullet.damage = charge;
     bullet.speed = 15;
-    bullet.image_xscale *= 1.5;
-    bullet.image_yscale *= 1.5;
     if(sign(image_xscale == 1)) bullet.direction = 0;
     if(sign(image_xscale == -1)) bullet.direction = 180;
+    bullet.image_xscale *= sign(image_xscale);
     charge = 0;
 }
 else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire)
@@ -254,10 +232,11 @@ if(hp &lt;= 0)
     }
 }
 
-if(place_meeting(x, y, obj_BasicPig))
+if(place_meeting(x, y, obj_BasicPig) || place_meeting(x, y, obj_FirePig))
 {
     hp--;
-    x -= 10;
+    y += -jVelocity * 10;
+    x += sign(image_xscale) * moveVelocity * 2;
 }
 
 </string>

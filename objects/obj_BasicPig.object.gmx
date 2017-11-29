@@ -31,10 +31,15 @@ dir = -1;
 xSpeed = 0;
 ySpeed = 0;
 moveSpeed = 8;
-grav = 0.5;
+grav = 0.4;
 hp = 3;
-
-
+pixelTolerance = 4;
+fearOfHeights = true;
+tolerance = 5;
+timeToCharge = 20;
+chargeRange = 100;
+chargeTime = 25;
+rechargeTime = 0;
 </string>
           </argument>
         </arguments>
@@ -62,9 +67,32 @@ hp = 3;
 xSpeed = dir * moveSpeed;
 ySpeed += grav;
 
+//charge behavior
+
+if(distance_to_object(obj_Player) &lt; chargeRange &amp;&amp; timeToCharge &gt;= 0 &amp;&amp; rechargeTime &lt;= 0){
+    if(timeToCharge== 20){ 
+        ySpeed += -2.5;
+    }
+    xSpeed = 0;
+    timeToCharge -= 1;    
+}
+
+if(distance_to_object(obj_Player) &lt; chargeRange &amp;&amp; timeToCharge &lt;= 0 &amp;&amp; rechargeTime &lt;= 0){
+    if(chargeTime == 10){dir = sign(obj_Player.x - x)}
+    
+    xSpeed = moveSpeed * 2 * dir;
+    chargeTime -= 1;
+    if(chargeTime &lt;= 0 || place_meeting(x, y, obj_Player)){
+        timeToCharge = 20;
+        chargeTime = 10;
+        rechargeTime = 150;
+    }
+}
+
+
 //collision code
 
-if(place_meeting(x+xSpeed,y,obj_Platform))
+if(place_meeting(x+xSpeed,y - pixelTolerance, obj_Platform))
 {
     while(!place_meeting(x + sign(xSpeed), y, obj_Platform))
     {
@@ -84,9 +112,17 @@ if(place_meeting(x, y + ySpeed, obj_Platform))
         y += sign(ySpeed);
     }
     ySpeed = 0;
+    if((fearOfHeights) &amp;&amp; !position_meeting(((x + x/2)), (y + y/2 + tolerance), obj_Platform)){
+        show_debug_message("fearOfHeights called");
+        dir *= -1;
+    }
 }
 
 y += ySpeed;
+
+//rechargeTime for charge attack
+
+rechargeTime--;
 </string>
           </argument>
         </arguments>
@@ -168,6 +204,10 @@ if(xSpeed != 0){
     sprite_index = spr_BasicPigWalk;
     image_speed = 1/4;
 }
+else if(xSpeed &gt; moveSpeed){
+    image_speed = 1/2;
+}
+
 else {
     sprite_index = spr_BasicPig;
 }

@@ -33,7 +33,9 @@ ySpeed = 0;
 moveSpeed = 8;
 grav = 0.5;
 hp = 3;
+pixelTolerance = 2;
 range = 250;
+playerInRange = false;
 stepCounter = 60;
 canFire = true;
 </string>
@@ -61,6 +63,7 @@ canFire = true;
             <string>///Patrol Code
 //collision code
 
+xSpeed = dir * moveSpeed;
 ySpeed += grav;
 
 if(stepCounter == 0){
@@ -71,24 +74,18 @@ else{
     stepCounter--;
 }
 
-if(place_meeting(x + xSpeed, y, obj_Platform))
-{
-    while(!place_meeting(x + sign(xSpeed), y, obj_Platform))
-    {
+if(place_meeting(x + xSpeed, y - pixelTolerance, obj_Platform)){
+    while(!place_meeting(x + sign(xSpeed), y, obj_Platform)){
         x += sign(xSpeed);
     }
     xSpeed = 0;
     dir *= -1;
 }
 
-xSpeed = dir * moveSpeed;
-
 x += xSpeed;
 
-if(place_meeting(x, y + ySpeed, obj_Platform))
-{
-    while(!place_meeting(x, y + sign(ySpeed), obj_Platform))
-    {
+if(place_meeting(x, y + ySpeed, obj_Platform)){
+    while(!place_meeting(x, y + sign(ySpeed), obj_Platform)){
         y += sign(ySpeed);
     }
     ySpeed = 0;
@@ -170,7 +167,7 @@ if(hp &lt;= 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///animation
+            <string>///Animation
 
 if(xSpeed != 0){
     sprite_index = spr_FirePigWalk;
