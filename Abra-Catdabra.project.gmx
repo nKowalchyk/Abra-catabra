@@ -6,39 +6,61 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_Wall</sprite>
-    <sprite>sprites\spr_Familiar</sprite>
-    <sprite>sprites\spr_PlayerOne</sprite>
-    <sprite>sprites\spr_WalkCycle</sprite>
-    <sprite>sprites\spr_PlayerJump</sprite>
-    <sprite>sprites\spr_BasicPig</sprite>
-    <sprite>sprites\spr_PlayerAttack</sprite>
-    <sprite>sprites\spr_BasicPigWalk</sprite>
-    <sprite>sprites\spr_FirePig</sprite>
-    <sprite>sprites\spr_FirePigWalk</sprite>
-    <sprite>sprites\spr_Bullet</sprite>
-    <sprite>sprites\spr_largeBullet</sprite>
-    <sprite>sprites\spr_FlameProjectile</sprite>
-    <sprite>sprites\spr_invisPlatform</sprite>
-    <sprite>sprites\spr_BigPig</sprite>
+    <sprites name="PlayerSprites">
+      <sprite>sprites\spr_PlayerOne</sprite>
+      <sprite>sprites\spr_PlayerAttack</sprite>
+      <sprite>sprites\spr_PlayerJump</sprite>
+      <sprite>sprites\spr_WalkCycle</sprite>
+    </sprites>
+    <sprites name="EnemySprites">
+      <sprite>sprites\spr_BasicPigWalk</sprite>
+      <sprite>sprites\spr_BasicPig</sprite>
+      <sprite>sprites\spr_FirePig</sprite>
+      <sprite>sprites\spr_FirePigWalk</sprite>
+      <sprite>sprites\spr_BigPig</sprite>
+    </sprites>
+    <sprites name="ProjectileSprites">
+      <sprite>sprites\spr_largeBullet</sprite>
+      <sprite>sprites\spr_Bullet</sprite>
+      <sprite>sprites\spr_FlameProjectile</sprite>
+    </sprites>
+    <sprites name="FamiliarSprites">
+      <sprite>sprites\spr_Familiar</sprite>
+    </sprites>
+    <sprites name="ObstacleSprites">
+      <sprite>sprites\spr_Wall</sprite>
+      <sprite>sprites\spr_invisPlatform</sprite>
+      <sprite>sprites\spr_UnderPlatform</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
-    <object>objects\obj_Platform</object>
-    <object>objects\obj_Player</object>
-    <object>objects\obj_Familiar</object>
-    <object>objects\obj_FirePig</object>
-    <object>objects\obj_Bullet</object>
-    <object>objects\obj_LargeBullet</object>
-    <object>objects\obj_FlameProjectile</object>
-    <object>objects\obj_invisPlatform</object>
-    <object>objects\obj_BigPig</object>
-    <object>objects\obj_BasicPig</object>
+    <objects name="EnemyObjects">
+      <object>objects\obj_BasicPig</object>
+      <object>objects\obj_BigPig</object>
+      <object>objects\obj_FirePig</object>
+    </objects>
+    <objects name="PlayerObject">
+      <object>objects\obj_Player</object>
+    </objects>
+    <objects name="FamiliarObject">
+      <object>objects\obj_Familiar</object>
+    </objects>
+    <objects name="ProjectileObjects">
+      <object>objects\obj_LargeBullet</object>
+      <object>objects\obj_Bullet</object>
+      <object>objects\obj_FlameProjectile</object>
+    </objects>
+    <objects name="ObstacleObject">
+      <object>objects\obj_Platform</object>
+      <object>objects\obj_invisPlatform</object>
+      <object>objects\obj_UnderPlatform</object>
+    </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\LevelOne</room>
     <room>rooms\testRoom</room>
-    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

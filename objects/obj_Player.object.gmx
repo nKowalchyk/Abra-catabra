@@ -30,7 +30,7 @@ hp = 3;
 maxHp = 3;
 vSpeed = 0;
 hSpeed = 0;
-jVelocity = 25;
+jVelocity = 30;
 moveVelocity = 15;
 grav = 1.7;
 yAcc = 1;
@@ -247,8 +247,8 @@ if(hp &lt;= 0)
 if(place_meeting(x, y, obj_BasicPig) || place_meeting(x, y, obj_FirePig))
 {
     hp--;
-    y += -jVelocity * 10;
-    x += sign(image_xscale) * moveVelocity * 2;
+    vSpeed += -jVelocity;
+    hSpeed += sign(image_xscale) * moveVelocity * 20;
 }
 
 if(place_meeting(x, y, obj_FlameProjectile)){
