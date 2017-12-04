@@ -129,6 +129,7 @@ else if(charging){
         chargeTime = 20;
         rechargeTime = 150;
         charging = false;
+        //fearOfHeights = true;
     }
 }
 

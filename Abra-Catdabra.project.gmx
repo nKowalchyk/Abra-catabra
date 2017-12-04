@@ -11,6 +11,8 @@
       <sprite>sprites\spr_PlayerAttack</sprite>
       <sprite>sprites\spr_PlayerJump</sprite>
       <sprite>sprites\spr_WalkCycle</sprite>
+      <sprite>sprites\spr_ChargeAttack</sprite>
+      <sprite>sprites\spr_Life</sprite>
     </sprites>
     <sprites name="EnemySprites">
       <sprite>sprites\spr_BasicPigWalk</sprite>
@@ -31,6 +33,7 @@
       <sprite>sprites\spr_Wall</sprite>
       <sprite>sprites\spr_invisPlatform</sprite>
       <sprite>sprites\spr_UnderPlatform</sprite>
+      <sprite>sprites\spr_CornerPlatform</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -43,6 +46,7 @@
     </objects>
     <objects name="PlayerObject">
       <object>objects\obj_Player</object>
+      <object>objects\obj_Life</object>
     </objects>
     <objects name="FamiliarObject">
       <object>objects\obj_Familiar</object>
@@ -56,6 +60,7 @@
       <object>objects\obj_Platform</object>
       <object>objects\obj_invisPlatform</object>
       <object>objects\obj_UnderPlatform</object>
+      <object>objects\obj_CornerPlatform</object>
     </objects>
   </objects>
   <rooms name="rooms">

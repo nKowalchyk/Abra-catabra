@@ -27,20 +27,23 @@
             <kind>1</kind>
             <string>///Init Player Vars
 hp = 3;
-maxHp = 3;
 vSpeed = 0;
 hSpeed = 0;
 jVelocity = 30;
 moveVelocity = 15;
 grav = 1.7;
-yAcc = 1;
 canFire = true;
 stepCounter = 20;
 isCharging = false;
 charge = 0;
-jumpNumber = 0;
 move = 0;
 isFiring = false;
+timeToHit =  0;
+
+
+for(i = 0; i &lt; hp; i++){
+    totalLife[i] = instance_create(view_xview + 120 * i, view_yview, obj_Life);
+}
 </string>
           </argument>
         </arguments>
@@ -63,14 +66,78 @@ isFiring = false;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Enemy Collision
+if(timeToHit &gt; 0){
+    timeToHit--;
+}
+else{
+    timeToHit = 0;
+}
+
+if(hp &lt;= 0)
+{
+   game_restart();
+}
+
+if((place_meeting(x, y, obj_BasicPig) || place_meeting(x, y, obj_FirePig)) &amp;&amp; timeToHit == 0)
+{
+    timeToHit = 120;
+    if(hp &gt; 0){
+        hp--;
+        instance_destroy(totalLife[hp]);
+    }
+    
+    vSpeed = -jVelocity;
+    hSpeed = -sign(image_xscale) * moveVelocity * 20;
+}
+
+if(place_meeting(x, y, obj_FlameProjectile) &amp;&amp; timeToHit == 0){
+    timeToHit = 120;
+    if(hp &gt; 0){
+        hp--;
+        instance_destroy(totalLife[hp]);
+    }
+    vSpeed = -jVelocity;
+    hSpeed = -sign(image_xscale) * moveVelocity * 200;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Animation
 image_speed = 1/4;
 
-if(move != 0){
+if(timeToHit &gt; 0){
+    image_alpha = 0.5;
+}
+else{
+    image_alpha = 1;
+}
+
+if(move != 0 &amp;&amp; !isCharging){
     image_xscale = sign(move);
 }
 if(isFiring){
     sprite_index = spr_PlayerAttack;
+}
+else if(isCharging){
+    sprite_index = spr_ChargeAttack;
 }
 else if(vSpeed != 0 &amp;&amp; !place_meeting(x, y + vSpeed, obj_Platform)){
     sprite_index = spr_PlayerJump;
@@ -82,10 +149,6 @@ else if(hSpeed == 0 &amp;&amp; vSpeed == 0 &amp;&amp; !place_meeting(x+hSpeed, y
     sprite_index = spr_PlayerOne;
 }
 
-
-//healthbar
-pc = (hp/maxHp) * 100;
-draw_healthbar(0, 0, 500, 200, pc, c_black, c_red, c_lime, 0, true, true);
 
 </string>
           </argument>
@@ -130,7 +193,9 @@ if (place_meeting(x+hSpeed, y, obj_Platform)){
     }
     hSpeed = 0;
 }
-
+if(isCharging){
+    hSpeed = 0;
+}
 x += hSpeed;
 //Vertical Collision
 if (place_meeting(x, y + vSpeed, obj_Platform)){
@@ -139,7 +204,6 @@ if (place_meeting(x, y + vSpeed, obj_Platform)){
     }
     vSpeed = 0;
 }
-
 y += vSpeed;
 
 </string>
@@ -181,23 +245,26 @@ else
     canFire = true;
 }
 
-if(shootLeft &amp;&amp; canFire)
-{
+if(shootLeft &amp;&amp; obj_Familiar.charge &gt;= 3 &amp;&amp; canFire){
     canFire = false;
-    draw_text(x, y - 100, "Charging!");
-    
-    if(charge &gt;= 0)
-    {
+    isCharging = true;
+    if(stepCounter % 20 == 0 &amp;&amp; charge &lt; 3){
         charge++;
-        if(charge &gt; 3)
-        {
-            draw_text(x, y - 100, "Charged!!");
-            charge = 3;
+        if(obj_Familiar.charge &gt; 0){
+            obj_Familiar.charge--;
         }
     }
+    else if(charge &gt; 3){
+        charge = 3;
+    }
 }
-else if(keyboard_check_released(vk_left) &amp;&amp; charge == 3)
-{   
+else if(keyboard_check_released(vk_left) &amp;&amp; charge &lt; 3){
+    isCharging = false;
+    charge = 0;
+}
+else if(keyboard_check_released(vk_left) &amp;&amp; charge &gt;= 3){   
+    isCharging = false;
+    isFiring = true;
     bullet = instance_create(x, y - 25, obj_LargeBullet)
     bullet.damage = charge;
     bullet.speed = 10;
@@ -206,8 +273,7 @@ else if(keyboard_check_released(vk_left) &amp;&amp; charge == 3)
     bullet.image_xscale *= sign(image_xscale);
     charge = 0;
 }
-else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire)
-{   
+else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire){   
     canFire = false;
     isFiring = true;
     bullet = instance_create(x, y - 25, obj_Bullet);
@@ -219,6 +285,8 @@ else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire)
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="8" enumb="72">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -235,24 +303,11 @@ else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Enemy Collision
-if(hp &lt;= 0)
-{
-    var inst = instance_position(x, y, obj_Player);
-    with(inst)
-    {
-    }
-}
+            <string>///Draw Player Life Bar
 
-if(place_meeting(x, y, obj_BasicPig) || place_meeting(x, y, obj_FirePig))
-{
-    hp--;
-    vSpeed += -jVelocity;
-    hSpeed += sign(image_xscale) * moveVelocity * 20;
-}
-
-if(place_meeting(x, y, obj_FlameProjectile)){
-    hp--;
+for(i = 0; i &lt; hp; i++){
+    totalLife[i].x = view_xview + 1000 + 100 * i;
+    totalLife[i].y = view_yview + 50;
 }
 </string>
           </argument>
