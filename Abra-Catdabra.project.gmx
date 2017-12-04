@@ -13,6 +13,7 @@
       <sprite>sprites\spr_WalkCycle</sprite>
       <sprite>sprites\spr_ChargeAttack</sprite>
       <sprite>sprites\spr_Life</sprite>
+      <sprite>sprites\spr_Charge</sprite>
     </sprites>
     <sprites name="EnemySprites">
       <sprite>sprites\spr_BasicPigWalk</sprite>
@@ -30,10 +31,16 @@
       <sprite>sprites\spr_Familiar</sprite>
     </sprites>
     <sprites name="ObstacleSprites">
-      <sprite>sprites\spr_Wall</sprite>
+      <sprite>sprites\spr_002</sprite>
       <sprite>sprites\spr_invisPlatform</sprite>
-      <sprite>sprites\spr_UnderPlatform</sprite>
-      <sprite>sprites\spr_CornerPlatform</sprite>
+      <sprite>sprites\spr_004</sprite>
+      <sprite>sprites\spr_Tile001</sprite>
+      <sprite>sprites\spr_002Flipped</sprite>
+      <sprite>sprites\spr_Tile001Flipped</sprite>
+      <sprite>sprites\spr_003</sprite>
+      <sprite>sprites\spr_003Flipped</sprite>
+      <sprite>sprites\spr_005</sprite>
+      <sprite>sprites\spr_005Flipped</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -47,6 +54,7 @@
     <objects name="PlayerObject">
       <object>objects\obj_Player</object>
       <object>objects\obj_Life</object>
+      <object>objects\obj_Charge</object>
     </objects>
     <objects name="FamiliarObject">
       <object>objects\obj_Familiar</object>
@@ -59,8 +67,14 @@
     <objects name="ObstacleObject">
       <object>objects\obj_Platform</object>
       <object>objects\obj_invisPlatform</object>
-      <object>objects\obj_UnderPlatform</object>
-      <object>objects\obj_CornerPlatform</object>
+      <object>objects\obj_004</object>
+      <object>objects\obj_001</object>
+      <object>objects\obj_001Flipped</object>
+      <object>objects\obj_002Flipped</object>
+      <object>objects\obj_003</object>
+      <object>objects\obj_003Flipped</object>
+      <object>objects\obj_005</object>
+      <object>objects\obj_005Flipped</object>
     </objects>
   </objects>
   <rooms name="rooms">

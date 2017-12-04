@@ -28,9 +28,9 @@
             <string>///Init Flame Projectile variables
 
 dir = 0;
-xVelocity = 15;
+xVelocity = 7;
 xSpeed = 0;
-ySpeed = -10;
+ySpeed = -8;
 grav = 0.4;
 
 </string>
@@ -97,7 +97,7 @@ image_angle = (y/x) * 100;
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_UnderPlatform">
+    <event eventtype="4" ename="obj_004">
       <action>
         <libid>1</libid>
         <id>203</id>

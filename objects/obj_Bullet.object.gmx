@@ -58,7 +58,7 @@ image_angle += 15;
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_UnderPlatform">
+    <event eventtype="4" ename="obj_004">
       <action>
         <libid>1</libid>
         <id>203</id>

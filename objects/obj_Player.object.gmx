@@ -44,6 +44,10 @@ timeToHit =  0;
 for(i = 0; i &lt; hp; i++){
     totalLife[i] = instance_create(view_xview + 120 * i, view_yview, obj_Life);
 }
+
+for(j = 0; j &lt; 3; j++){
+    totalCharge[i] = instance_create(view_xview + 120 * j, view_yview + 100, obj_Charge);
+}
 </string>
           </argument>
         </arguments>
@@ -130,14 +134,11 @@ else{
     image_alpha = 1;
 }
 
-if(move != 0 &amp;&amp; !isCharging){
+if(move != 0){
     image_xscale = sign(move);
 }
 if(isFiring){
     sprite_index = spr_PlayerAttack;
-}
-else if(isCharging){
-    sprite_index = spr_ChargeAttack;
 }
 else if(vSpeed != 0 &amp;&amp; !place_meeting(x, y + vSpeed, obj_Platform)){
     sprite_index = spr_PlayerJump;
@@ -193,9 +194,7 @@ if (place_meeting(x+hSpeed, y, obj_Platform)){
     }
     hSpeed = 0;
 }
-if(isCharging){
-    hSpeed = 0;
-}
+
 x += hSpeed;
 //Vertical Collision
 if (place_meeting(x, y + vSpeed, obj_Platform)){
@@ -248,7 +247,7 @@ else
 if(shootLeft &amp;&amp; obj_Familiar.charge &gt;= 3 &amp;&amp; canFire){
     canFire = false;
     isCharging = true;
-    if(stepCounter % 20 == 0 &amp;&amp; charge &lt; 3){
+    if(stepCounter % 10 == 0 &amp;&amp; charge &lt; 3){
         charge++;
         if(obj_Familiar.charge &gt; 0){
             obj_Familiar.charge--;
@@ -303,12 +302,19 @@ else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw Player Life Bar
+            <string>///HUD for the player
 
 for(i = 0; i &lt; hp; i++){
     totalLife[i].x = view_xview + 1000 + 100 * i;
     totalLife[i].y = view_yview + 50;
 }
+
+maxCharge = charge/3 * 100;
+draw_healthbar(view_xview + 975, view_yview + 150, view_xview + 1225, view_yview + 100, maxCharge, c_black, c_red, c_lime, 0, true, true);
+
+//totalCharge[0].x = view_xview + 1000 + 100 * i;
+//totalCharge[0].y = view_yview + 100;
+
 </string>
           </argument>
         </arguments>

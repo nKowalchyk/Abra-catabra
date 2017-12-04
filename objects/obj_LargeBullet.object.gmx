@@ -66,7 +66,7 @@ else if(image_xscale &lt;= 1.5 &amp;&amp; image_yscale &lt;= 1.5){
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_UnderPlatform">
+    <event eventtype="4" ename="obj_004">
       <action>
         <libid>1</libid>
         <id>203</id>
