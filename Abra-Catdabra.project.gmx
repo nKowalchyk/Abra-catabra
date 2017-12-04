@@ -55,6 +55,7 @@
       <object>objects\obj_Player</object>
       <object>objects\obj_Life</object>
       <object>objects\obj_Charge</object>
+      <object>objects\obj_LifeUp</object>
     </objects>
     <objects name="FamiliarObject">
       <object>objects\obj_Familiar</object>
@@ -79,7 +80,6 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\LevelOne</room>
-    <room>rooms\testRoom</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
