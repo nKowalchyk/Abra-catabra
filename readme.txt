@@ -30,3 +30,6 @@ Sounds:
 		  JaviarZumer
 		  alonsotm
 	From freesound.org
+
+Music:
+	Music: http://www.purple-planet.com
