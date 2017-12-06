@@ -13,7 +13,20 @@ no installation needed, just run the .exe
 /Controls/
 /********/
 
-WASD - movement
-SPACE - while jumping (w), used to dash midair while holding a directional key
-RIGHT_ARROW - tap to fire basic attack
+AD - movement
+SPACE - Jump
+RIGHT_ARROW - fire basic attack
 LEFT_ARROW - hold to charge attack, release to fire powerful attack
+
+/******/
+/Credits/
+/******/
+
+Software Lead: Nick Kowalchyk
+Design Lead: Nancy Wang
+
+Sounds:
+	Credit to soundnimja
+		  JaviarZumer
+		  alonsotm
+	From freesound.org

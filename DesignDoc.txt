@@ -15,12 +15,13 @@ Planned Features:
 DONE:
   - Basic Platforming
   - Weak Attack
-
-NEEDS TESTING:
   - Strong/Charged Attack
-
-TODO:
+  - Resource System
   - Different Enemies
   - Animations/Assets
   - Music/Sound
+
+NEEDS TESTING:
+
+TODO:
   - Different Environments

@@ -20,4 +20,6 @@ Bugs:
     Regular Pig Charges occur randomly, without visual jump notification
       - Fixed: Added and extra boolean check to determine if pigs have done
         visual jump and chargeTimer has been reset
+    Fire Pig changes direction before reaching a horizontal Collision
+      - Fixed: Changed Ground tiles collision box to include whole square
     
