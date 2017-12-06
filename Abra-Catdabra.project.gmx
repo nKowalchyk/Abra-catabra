@@ -4,7 +4,13 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\mus_LevelOne</sound>
+    <sound>sound\SFX_Jump</sound>
+    <sound>sound\SFX_Projectile</sound>
+    <sound>sound\SFX_Charge</sound>
+    <sound>sound\SFX_LargeProjectile</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="PlayerSprites">
       <sprite>sprites\spr_PlayerOne</sprite>
@@ -43,7 +49,9 @@
       <sprite>sprites\spr_005Flipped</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <objects name="EnemyObjects">
@@ -77,6 +85,8 @@
       <object>objects\obj_005</object>
       <object>objects\obj_005Flipped</object>
     </objects>
+    <object>objects\obj_Dummy</object>
+    <object>objects\obj_FamiliarDummy</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\LevelOne</room>

@@ -203,8 +203,7 @@ else if(hSpeed == 0 &amp;&amp; vSpeed == 0 &amp;&amp; !place_meeting(x+hSpeed, y
 
 keyRight = keyboard_check(ord('D'));
 keyLeft = keyboard_check(ord('A'));
-keyDown = keyboard_check(ord('S'));
-keyUp = keyboard_check(ord('W'));
+keyUp = keyboard_check(vk_space);
 
 move = -keyLeft + keyRight;
 hSpeed = move * moveVelocity;
@@ -213,6 +212,9 @@ vSpeed += grav;
 
 if (place_meeting(x, y+1, obj_Platform)){
     vSpeed = keyUp * -jVelocity;
+    if(keyUp){
+        audio_play_sound(SFX_Jump, 1, false);
+    }
 }
 
 //Horizontal Collision
@@ -256,7 +258,7 @@ y += vSpeed;
             <string>///Projectiles
 
 shootRight = keyboard_check(vk_right);
-shootLeft = keyboard_check(vk_left);
+shootLeft = keyboard_check(vk_up);
 
 if(canFire){
     isFiring = false;
@@ -268,7 +270,7 @@ if(stepCounter &gt; 0)
 }
 else
 {
-    stepCounter = 20;
+    stepCounter = 10;
     canFire = true;
 }
 
@@ -277,6 +279,7 @@ if(shootLeft &amp;&amp; obj_Familiar.charge &gt;= 3 &amp;&amp; canFire){
     isCharging = true;
     if(stepCounter % 10 == 0 &amp;&amp; charge &lt; 3){
         charge++;
+        audio_play_sound(SFX_Charge, 1, false);
         if(obj_Familiar.charge &gt; 0){
             obj_Familiar.charge--;
         }
@@ -285,24 +288,27 @@ if(shootLeft &amp;&amp; obj_Familiar.charge &gt;= 3 &amp;&amp; canFire){
         charge = 3;
     }
 }
-else if(keyboard_check_released(vk_left) &amp;&amp; charge &lt; 3){
+else if(keyboard_check_released(vk_up) &amp;&amp; charge &lt; 3){
     isCharging = false;
     charge = 0;
 }
-else if(keyboard_check_released(vk_left) &amp;&amp; charge &gt;= 3){   
+else if(keyboard_check_released(vk_up) &amp;&amp; charge &gt;= 3){   
     isCharging = false;
     isFiring = true;
+    audio_play_sound(SFX_LargeProjectile, 1, false);
     bullet = instance_create(x, y - 25, obj_LargeBullet)
     bullet.damage = charge;
-    bullet.speed = 10;
+    bullet.speed = 25;
     if(sign(image_xscale == 1)) bullet.direction = 0;
     if(sign(image_xscale == -1)) bullet.direction = 180;
     bullet.image_xscale *= sign(image_xscale);
     charge = 0;
 }
-else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire){   
+else if(shootRight &amp;&amp; canFire){   
     canFire = false;
     isFiring = true;
+    stepCounter = 10;
+    audio_play_sound(SFX_Projectile, 1, false);
     bullet = instance_create(x, y - 25, obj_Bullet);
     bullet.speed = 25;
     if(sign(image_xscale == 1)) bullet.direction = 0;
@@ -333,12 +339,12 @@ else if(keyboard_check_pressed(vk_right) &amp;&amp; canFire){
             <string>///HUD for the player
 
 for(i = 0; i &lt; hp; i++){
-    totalLife[i].x = view_xview + 1000 + 100 * i;
+    totalLife[i].x = view_xview + 1150 + 100 * i;
     totalLife[i].y = view_yview + 50;
 }
 
 maxCharge = charge/3 * 100;
-draw_healthbar(view_xview + 975, view_yview + 150, view_xview + 1225, view_yview + 100, maxCharge, c_black, c_red, c_lime, 0, true, true);
+draw_healthbar(view_xview + 1125, view_yview + 150, view_xview + 1375, view_yview + 100, maxCharge, c_black, c_red, c_lime, 0, true, true);
 
 //totalCharge[0].x = view_xview + 1000 + 100 * i;
 //totalCharge[0].y = view_yview + 100;
