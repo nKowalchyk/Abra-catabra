@@ -18,9 +18,9 @@ SPACE - Jump
 RIGHT_ARROW - fire basic attack
 LEFT_ARROW - hold to charge attack, release to fire powerful attack
 
-/******/
+/*******/
 /Credits/
-/******/
+/*******/
 
 Software Lead: Nick Kowalchyk
 Design Lead: Nancy Wang
