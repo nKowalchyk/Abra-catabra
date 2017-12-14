@@ -89,6 +89,7 @@
     <object>objects\obj_FamiliarDummy</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\LevelTwo</room>
     <room>rooms\LevelOne</room>
   </rooms>
   <help>

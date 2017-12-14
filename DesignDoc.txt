@@ -11,6 +11,9 @@ Planned Features:
   - Animations/Assets
   - Music/Sound
   - Different Environments
+  - Introduction Level
+  - Boss Fight
+  - Multiple Levels
 
 DONE:
   - Basic Platforming
@@ -22,6 +25,9 @@ DONE:
   - Music/Sound
 
 NEEDS TESTING:
+  - Boss Fight
 
 TODO:
-  - Different Environments
+  - Different Environments 
+  - Introduction Scene
+  - Multiple Levels

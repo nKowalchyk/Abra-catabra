@@ -22,4 +22,6 @@ Bugs:
         visual jump and chargeTimer has been reset
     Fire Pig changes direction before reaching a horizontal Collision
       - Fixed: Changed Ground tiles collision box to include whole square
-    
+    When Restarting Room, Game Crashes
+      - Fixed: Life Bars only display if instances of obj_Life exist, if they
+        don't, but hp > 0, then it creates instances equal to the amount of hp

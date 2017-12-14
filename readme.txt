@@ -27,8 +27,9 @@ Design Lead: Nancy Wang
 
 Sounds:
 	Credit to soundnimja
-		  JaviarZumer
-		  alonsotm
+		  			JaviarZumer
+		  			alonsotm
+						yottasounds
 	From freesound.org
 
 Music:
